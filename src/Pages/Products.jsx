@@ -7,6 +7,8 @@ import {
   Loading,
 } from "../components";
 
+const url = "/products";
+
 const getAllProductsQuery = (queryParams) => {
   const { search, company, category, shipping, order, price } = queryParams;
   return {
@@ -19,19 +21,18 @@ const getAllProductsQuery = (queryParams) => {
       order ?? "",
       price ?? "",
     ],
-    queryFn: () => customFetch(url, { params }),
+    queryFn: () => customFetch(url, { params: queryParams }),
   };
 };
 
 export const loader =
   (queryClient) =>
   async ({ request }) => {
-    const url = "/products";
     const params = Object.fromEntries([
       ...new URL(request.url).searchParams.entries(),
     ]);
 
-    const response = await queryClient.ensureDataQuery(
+    const response = await queryClient.ensureQueryData(
       getAllProductsQuery(params)
     );
     const products = response.data.data;

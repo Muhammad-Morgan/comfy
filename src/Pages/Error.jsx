@@ -1,7 +1,7 @@
 import { Link, useRouteError } from "react-router-dom";
 
 const Error = () => {
-  const { status, data, statusText } = useRouteError();
+  const { status, data } = useRouteError();
   if (status === 404) {
     return (
       <aside className="h-screen grid items-center">

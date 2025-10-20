@@ -38,7 +38,7 @@ export const loader =
       ...new URL(request.url).searchParams.entries(),
     ]);
     try {
-      const response = await queryClient.ensureDataQuery(
+      const response = await queryClient.ensureQueryData(
         getOrdersQuery(params, user)
       );
       return {

@@ -28,8 +28,8 @@ const userSlice = createSlice({
       state.user = user;
       localStorage.setItem("user", JSON.stringify(user));
     },
-    logoutUser: (state, action) => {
-      state.user.username = null;
+    logoutUser: (state) => {
+      state.user= null;
       localStorage.removeItem("user");
       toast.success("logged out");
     },
