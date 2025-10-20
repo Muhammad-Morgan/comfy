@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { customFetch, formatPrice } from "../utiles";
 import { useSelector } from "react-redux";
 import { cartCleared } from "../Features/Cart/cartSlice";
-export const loader = (store, queryClient) => () => {
+export const loader = (store) => () => {
   const user = store.getState().userState.user;
   if (!user) {
     toast.warn("you need to log in");
@@ -13,7 +13,7 @@ export const loader = (store, queryClient) => () => {
 };
 
 export const action =
-  (store) =>
+  (store,queryClient) =>
   async ({ request }) => {
     const formData = await request.formData();
     const { name, address } = Object.fromEntries(formData);
@@ -46,6 +46,7 @@ export const action =
     } catch (error) {
       const message =
         error?.response?.data?.error?.message || "something went wrong !";
+        console.log(error)
       toast.error(message);
       if (error?.response?.status === 401 || 403) return redirect("/");
       return null;
