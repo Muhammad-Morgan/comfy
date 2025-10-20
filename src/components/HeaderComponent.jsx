@@ -20,10 +20,10 @@ const HeaderComponent = () => {
             </p>
             <button
               onClick={() => {
-                navigate("/");
                 dispatch(cartCleared());
                 dispatch(logoutUser());
                 queryClient.removeQueries(["orders"]);
+                navigate("/");
               }}
               className="btn btn-outline btn-xs text-xs btn-primary uppercase"
             >

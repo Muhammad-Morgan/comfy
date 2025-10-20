@@ -35,8 +35,8 @@ export const loader =
     const response = await queryClient.ensureQueryData(
       getAllProductsQuery(params)
     );
-    const products = response.data.data;
-    const meta = response.data.meta;
+    const products = response?.data?.data;
+    const meta = response?.data?.meta;
 
     return { meta, products, params };
   };

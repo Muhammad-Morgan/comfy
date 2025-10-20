@@ -1,6 +1,7 @@
 import { FeaturedProducts, Hero, Loading } from "../components";
 import { useNavigation } from "react-router-dom";
 import { customFetch } from "../utiles";
+import { toast } from "react-toastify";
 
 const featuredURL = "/products?featured=true";
 
@@ -12,10 +13,13 @@ const featuredQuery = {
 export const loader = (queryClient) => async () => {
   try {
     const response = await queryClient.ensureQueryData(featuredQuery);
-    const products = response.data.data;
+    const products = response?.data?.data;
     return { products };
   } catch (error) {
-    console.log(error.response.msg);
+    const message =
+      error?.response?.data?.error?.message || "something went wrong !";
+    console.log(error);
+    toast.warn(message);
   }
 };
 

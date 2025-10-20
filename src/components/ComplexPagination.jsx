@@ -31,7 +31,7 @@ const ComplexPagination = () => {
     // before dots
     if (page > 2) {
       pageButtons.push(
-        <button className="join-item btn-sm md:btn-md btn">...</button>
+        <button className="join-item btn-sm md:btn-md btn" key='dots-1'>...</button>
       );
     }
     // current button
@@ -41,7 +41,7 @@ const ComplexPagination = () => {
     // after dots
     if (page < pageCount - 1) {
       pageButtons.push(
-        <button className="join-item btn-sm md:btn-md btn">...</button>
+        <button className="join-item btn-sm md:btn-md btn" key='dots-2'>...</button>
       );
     }
     // last button

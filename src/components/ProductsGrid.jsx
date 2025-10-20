@@ -1,10 +1,10 @@
 import { formatPrice } from "../utiles";
 import { Link, useLoaderData } from "react-router-dom";
 const ProductsGrid = () => {
-  const { products } = useLoaderData();
+  const loaderData = useLoaderData();
   return (
     <article className="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-y-8 md:gap-x-6">
-      {products?.map((product) => {
+      {loaderData?.products?.map((product) => {
         const { title, image, price } = product.attributes;
         const dollarAmount = formatPrice(price);
         return (
