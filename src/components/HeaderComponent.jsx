@@ -4,7 +4,7 @@ import { logoutUser } from "../Features/User/userSlice";
 import { cartCleared } from "../Features/Cart/cartSlice";
 import { useQueryClient } from "@tanstack/react-query";
 const HeaderComponent = () => {
-  const username = useSelector((state) => state.userState.user?.username);
+  const username = useSelector((state) => state.userState.user?.username)  || "user";
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -16,7 +16,7 @@ const HeaderComponent = () => {
         {username ? (
           <div className="flex gap-x-6 justify-center items-center">
             <p className="text-xs mr-2 sm:text-sm capitalize">
-              Hello, {username || "user"}
+              Hello, {username}
             </p>
             <button
               onClick={() => {
