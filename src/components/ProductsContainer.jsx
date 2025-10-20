@@ -4,9 +4,12 @@ import { useState } from "react";
 import { BsFillGridFill, BsList } from "react-icons/bs";
 
 const ProductsContainer = () => {
+  const getItemsView = () => {
+    return localStorage.getItem("itemsView") || "grid";
+  };
   const { meta } = useLoaderData();
   const total = meta.pagination.total;
-  const [layout, setLayout] = useState("grid");
+  const [layout, setLayout] = useState(getItemsView());
 
   const updateLayout = (pattern) => {
     return `text-xl btn btn-circle btn-sm ${
@@ -32,13 +35,25 @@ const ProductsContainer = () => {
         </div>
         <div className="flex gap-x-2">
           <button
-            onClick={() => setLayout("grid")}
+            onClick={() => {
+              setLayout(() => {
+                const newLayout = "grid";
+                localStorage.setItem("itemsView", newLayout);
+                return newLayout;
+              });
+            }}
             className={updateLayout("grid")}
           >
             <BsFillGridFill />
           </button>
           <button
-            onClick={() => setLayout("list")}
+            onClick={() => {
+              setLayout(() => {
+                const newLayout = "list";
+                localStorage.setItem("itemsView", newLayout);
+                return newLayout;
+              });
+            }}
             className={updateLayout("list")}
           >
             <BsList />

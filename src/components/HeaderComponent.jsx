@@ -1,11 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../Features/User/userSlice";
-import { cartCleared } from '../features/cart/cartSlice';
+import { cartCleared } from "../Features/Cart/cartSlice";
+import { useQueryClient } from "@tanstack/react-query";
 const HeaderComponent = () => {
   const username = useSelector((state) => state.userState.user?.username);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
   return (
     <header className="bg-neutral py-2 text-neutral-content">
       <div className="align-element flex justify-center sm:justify-end">
@@ -17,9 +20,10 @@ const HeaderComponent = () => {
             </p>
             <button
               onClick={() => {
+                navigate("/");
                 dispatch(cartCleared());
                 dispatch(logoutUser());
-                navigate("/");
+                queryClient.removeQueries(["orders"]);
               }}
               className="btn btn-outline btn-xs text-xs btn-primary uppercase"
             >

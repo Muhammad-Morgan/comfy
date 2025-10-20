@@ -5,7 +5,6 @@ import { formatPrice } from "../utiles";
 const CartItem = ({
   amount,
   cartID,
-  productID,
   productColor,
   company,
   title,

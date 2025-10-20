@@ -3,9 +3,15 @@ import { useNavigation } from "react-router-dom";
 import { customFetch } from "../utiles";
 
 const featuredURL = "/products?featured=true";
-export const loader = async () => {
+
+const featuredQuery = {
+  queryKey: ["featuredproducts"],
+  queryFn: () => customFetch(featuredURL),
+};
+
+export const loader = (queryClient) => async () => {
   try {
-    const response = await customFetch(featuredURL);
+    const response = await queryClient.ensureQueryData(featuredQuery);
     const products = response.data.data;
     return { products };
   } catch (error) {

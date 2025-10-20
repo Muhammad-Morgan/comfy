@@ -2,9 +2,9 @@ import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const SingleNavLink = ({ url, text }) => {
-  const user = useSelector((state) => state.userState.user);
+  const { username } = useSelector((state) => state.userState.user);
 
-  if ((url === "checkout" || url === "orders") && !user) return null;
+  if ((text === "checkout" || text === "orders") && !username) return null;
   return (
     <NavLink
       to={url}
