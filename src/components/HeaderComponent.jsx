@@ -16,7 +16,7 @@ const HeaderComponent = () => {
         {username ? (
           <div className="flex gap-x-6 justify-center items-center">
             <p className="text-xs mr-2 sm:text-sm capitalize">
-              Hello, {username}
+              Hello, {username || "user"}
             </p>
             <button
               onClick={() => {
