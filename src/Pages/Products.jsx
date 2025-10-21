@@ -10,7 +10,7 @@ import {
 const url = "/products";
 
 const getAllProductsQuery = (queryParams) => {
-  const { search, company, category, shipping, order, price } = queryParams;
+  const { search, company, category, shipping, order, price,page } = queryParams;
   return {
     queryKey: [
       "allproducts",
@@ -20,6 +20,7 @@ const getAllProductsQuery = (queryParams) => {
       shipping ?? "",
       order ?? "",
       price ?? "",
+      page ?? 1
     ],
     queryFn: () => customFetch(url, { params: queryParams }),
   };
